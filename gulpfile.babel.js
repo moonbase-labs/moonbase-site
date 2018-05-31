@@ -9,7 +9,7 @@ import tildeImporter from 'node-sass-tilde-importer'
 
 const $ = gulpLoadPlugins()
 const browserSync = require('browser-sync').create()
-const isProduction = process.env.NODE_ENV === 'dev'
+const isProduction = process.env.NODE_ENV === 'production'
 
 const onError = (err) => {
     console.log(err)
