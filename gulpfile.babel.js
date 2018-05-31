@@ -9,7 +9,7 @@ import tildeImporter from 'node-sass-tilde-importer'
 
 const $ = gulpLoadPlugins()
 const browserSync = require('browser-sync').create()
-const isProduction = process.env.NODE_ENV === 'development'
+const isProduction = process.env.NODE_ENV === 'production'
 
 const onError = (err) => {
     console.log(err)
@@ -21,12 +21,12 @@ let suppressHugoErrors = false;
 
 gulp.task('server', ['build'], () => {
     gulp.start('init-watch')
-    $.watch(['archetypes/**/*', 'data/**/*', 'content/**/*', 'themes/moonbase/layouts/**/*', 'static/**/*', 'config.toml'], () => gulp.start('hugo'))
+    $.watch(['archetypes/**/*', 'data/**/*', 'content/**/*', 'layouts/**/*', 'static/**/*', 'config.toml'], () => gulp.start('hugo'))
 });
 
 gulp.task('server:with-drafts', ['build-preview'], () => {
     gulp.start('init-watch')
-    $.watch(['archetypes/**/*', 'data/**/*', 'content/**/*', 'themes/moonbase/layouts/**/*', 'static/**/*', 'config.toml'], () => gulp.start('hugo-preview'))
+    $.watch(['archetypes/**/*', 'data/**/*', 'content/**/*', 'layouts/**/*', 'static/**/*', 'config.toml'], () => gulp.start('hugo-preview'))
 });
 
 gulp.task('init-watch', () => {
@@ -39,7 +39,7 @@ gulp.task('init-watch', () => {
     })
     $.watch('src/sass/**/*.scss', () => gulp.start('sass'))
     $.watch('src/js/**/*.js', () => gulp.start('js-watch'))
-    $.watch('src/images/**/*', () => gulp.start('images'))
+    $.watch('src/images/**/*', () => gulp.start('images'))  
 })
 
 gulp.task('build', () => {
@@ -55,7 +55,6 @@ gulp.task('build-preview', () => {
 gulp.task('hugo', (cb) => {
     let baseUrl = process.env.NODE_ENV === 'production' ? process.env.URL : process.env.DEPLOY_PRIME_URL;
     let args = baseUrl ? ['-b', baseUrl] : [];
-    baseUrl.push('-t moonbase');
 
     return spawn('hugo', args, { stdio: 'inherit' }).on('close', (code) => {
         if (suppressHugoErrors || code === 0) {

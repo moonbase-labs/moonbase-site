@@ -1,6 +1,6 @@
 baseURL = "/"
 languageCode = "en-gb"
-title = "Moonbase"
+title = "{TITLE}"
 
 enableRobotsTXT = true
 disableAliases = true
@@ -30,3 +30,4 @@ mediatype = "text/netlify"
 baseName = "_headers"
 isPlainText = true
 notAlternative = true
+
