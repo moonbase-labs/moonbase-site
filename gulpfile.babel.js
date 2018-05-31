@@ -9,7 +9,7 @@ import tildeImporter from 'node-sass-tilde-importer'
 
 const $ = gulpLoadPlugins()
 const browserSync = require('browser-sync').create()
-const isProduction = process.env.NODE_ENV === 'production'
+const isProduction = process.env.NODE_ENV === 'dev'
 
 const onError = (err) => {
     console.log(err)
@@ -39,7 +39,7 @@ gulp.task('init-watch', () => {
     })
     $.watch('src/sass/**/*.scss', () => gulp.start('sass'))
     $.watch('src/js/**/*.js', () => gulp.start('js-watch'))
-    $.watch('src/images/**/*', () => gulp.start('images'))  
+    $.watch('src/images/**/*', () => gulp.start('images'))
 })
 
 gulp.task('build', () => {
