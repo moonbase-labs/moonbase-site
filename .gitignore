@@ -5,4 +5,7 @@
 /static/fonts
 /static/css/app.css
 /static/js/app.js
-\.DS_Store
+
+/functions
+
+.DS_Store
